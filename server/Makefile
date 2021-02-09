@@ -6,6 +6,10 @@ start:
 migrate:
 	docker-compose exec todo-app-backend /bin/bash -c "cd /app/server/schema && diesel migration run"
 
+.PHONY: fmt
+fmt:
+	docker-compose exec todo-app-backend /bin/bash -c "cd /app/server && cargo fmt --all"
+
 # .PHONY: generate
 # generate:
 # 	docker-compose exec app go generate ./...

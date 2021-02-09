@@ -10,3 +10,7 @@ make migrate
 ```
 make run
 ```
+
+
+## Commands
+- `make fmt` : format rust files

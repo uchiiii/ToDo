@@ -1,7 +1,7 @@
 FROM rust:1.49-buster AS base
 
 # Install
-RUN rustup component add rust-src
+RUN rustup component add rust-src rustfmt
 RUN cargo install cargo-edit
 RUN cargo install diesel_cli --no-default-features --features mysql
 
