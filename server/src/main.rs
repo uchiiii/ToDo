@@ -1,13 +1,10 @@
 use actix_web::{dev::ServiceRequest, web, App, Error, HttpServer};
 
-use mysql;
 use handler;
-
+use mysql;
 
 #[actix_rt::main]
 async fn main() -> Result<(), actix_web::Error> {
-    
-
     let pool = mysql::establish_connection();
 
     // let results = todos

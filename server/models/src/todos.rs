@@ -1,4 +1,3 @@
-
 #[derive(Queryable)]
 pub struct Todo {
     pub id: i32,

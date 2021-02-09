@@ -1,17 +1,16 @@
-use diesel::QueryDsl;
-use diesel::RunQueryDsl;
 use actix_web::{web, Error, HttpResponse, Responder};
+use chrono;
 use diesel::dsl::{delete, insert_into};
 use diesel::prelude::*;
+use diesel::QueryDsl;
+use diesel::RunQueryDsl;
 use serde::{Deserialize, Serialize};
 use std::vec::Vec;
-use chrono;
 
 use models::todos::Todo;
 use models::users::{NewUser, User};
-use schema::schema::{todos, users};
 use mysql::MysqlPool;
-
+use schema::schema::{todos, users};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct InputUser {
@@ -19,7 +18,6 @@ pub struct InputUser {
     pub last_name: String,
     pub email: String,
 }
-
 
 pub async fn get_todos() -> impl Responder {
     format!("hello from get todos")
@@ -70,14 +68,16 @@ pub async fn delete_user(
     )
 }
 
-
 fn get_all_users(pool: web::Data<MysqlPool>) -> Result<Vec<User>, diesel::result::Error> {
     let conn = pool.get().unwrap();
     let items = users::table.load::<User>(&conn)?;
     Ok(items)
 }
 
-fn db_get_user_by_id(pool: web::Data<MysqlPool>, user_id: i32) -> Result<User, diesel::result::Error> {
+fn db_get_user_by_id(
+    pool: web::Data<MysqlPool>,
+    user_id: i32,
+) -> Result<User, diesel::result::Error> {
     let conn = pool.get().unwrap();
     users::table.find(user_id).get_result::<User>(&conn)
 }
@@ -98,7 +98,10 @@ fn add_single_user(
     users::table.order(users::id.desc()).first(&conn)
 }
 
-fn delete_single_user(db: web::Data<MysqlPool>, user_id: i32) -> Result<usize, diesel::result::Error> {
+fn delete_single_user(
+    db: web::Data<MysqlPool>,
+    user_id: i32,
+) -> Result<usize, diesel::result::Error> {
     let conn = db.get().unwrap();
     let count = delete(users::table.find(user_id)).execute(&conn)?;
     Ok(count)
