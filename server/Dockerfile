@@ -6,13 +6,16 @@ RUN cargo install cargo-edit
 RUN cargo install diesel_cli --no-default-features --features mysql
 
 # Copy local code to the container image.
-WORKDIR /usr/src/app
+WORKDIR /app
 COPY . .
 
 
 FROM base AS build
 # Install production dependencies and build a release artifact.
-RUN cargo build
+RUN cargo build --release
 
-# Run the web service on container startup.
-# CMD ["ToDo"]
+# production
+# FROM rust:1.43.1-slim-stretch
+# COPY --from=build-stage /app/target/release/api .
+# EXPOSE 8088
+# CMD ["/usr/local/bin/api"]

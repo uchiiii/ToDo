@@ -5,7 +5,7 @@ services:
     container_name: todo-app-backend
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./server/Dockerfile
       target: base
     volumes:
       - .:/app

@@ -4,5 +4,7 @@ Web application with graphql
 - Frontend: Typescript, React
 
 ## Setup
-
-## Commands
+1. dockerをbuild&start
+```
+make run
+```

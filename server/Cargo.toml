@@ -1,0 +1,21 @@
+[package]
+name = "app"
+version = "0.1.0"
+authors = ["uchiiii <uchikun17@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-rt = "1.1.1"
+actix-web = "3.3.2"
+derive_more = "0.99.11"
+diesel = { version = "1.4.4", features = ["mysql"] }
+serde  = { version = "1.0", features = ["derive"]}
+mysql = {path = "infra/mysql"}
+models = {path = "models" }
+handler = {path = "handler"}
+schema = {path = "schema"}
+
+[build]
+jobs = 3

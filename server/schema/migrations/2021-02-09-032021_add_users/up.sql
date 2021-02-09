@@ -1,0 +1,9 @@
+-- Your SQL goes here
+
+CREATE TABLE `users` (
+  id INTEGER AUTO_INCREMENT PRIMARY KEY,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
