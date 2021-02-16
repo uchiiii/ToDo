@@ -1,0 +1,15 @@
+[package]
+name = "auth"
+version = "0.1.0"
+authors = ["uchiiii <uchikun17@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-web-httpauth = "0.5.0"
+reqwest = { version = "0.10", features = ["json"] }
+tokio = { version = "0.2", features = ["full"] }
+alcoholic_jwt = "1.0.0"
+serde  = { version = "1.0", features = ["derive"]}
+codes = {path = "../codes" }
